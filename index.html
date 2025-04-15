@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой продукт проекта</title>
+    <title>Детектор ИИ-текстов</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
         <h1>Добро пожаловать!</h1>
         <nav>
             <a href="#about">О нас</a>
-            <a href="#services">Важное</a>
+            <a href="#gallery">Галерея</a>
             <a href="#contact">Контакты</a>
         </nav>
     </header>
@@ -19,15 +19,21 @@
     <main>
         <section id="about">
             <h2>О нас</h2>
-            <p>Этот продукт создан, чтобы людям было легче обнаружить ИИ в тексте.</p>
+            <p>Этот продукт помогает обнаруживать тексты, созданные искусственным интеллектом.</p>
             <button id="helloBtn">Поздороваться</button>
         </section>
 
-
         <section id="gallery">
+            <h2>Галерея примеров</h2>
             <div class="image-grid">
-                <img src="image1.png" alt="история ИИ, функции искуственного интелекта"> 
-                <img src="image2.png" alt="проблемы нейростей, как обнаружить, примеры">
+                <div class="image-card">
+                    <img src="image1.png" alt="История ИИ" loading="lazy">
+                    <div class="image-caption">Эволюция искусственного интеллекта</div>
+                </div>
+                <div class="image-card">
+                    <img src="image2.png" alt="Обнаружение ИИ" loading="lazy">
+                    <div class="image-caption">Как отличить ИИ-текст от человеческого</div>
+                </div>
             </div>
         </section>
 
@@ -39,7 +45,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Мой сайт. Все права защищены.</p>
+        <p>&copy; 2025 Детектор ИИ-текстов. Все права защищены.</p>
     </footer>
 
     <script src="script.js"></script>
