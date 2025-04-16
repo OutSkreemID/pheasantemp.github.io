@@ -8,32 +8,48 @@
 </head>
 <body>
     <header>
-        <h1>Добро пожаловать!</h1>
+        <h1>Детектор ИИ-текстов</h1>
         <nav>
             <a href="#about">О нас</a>
-            <a href="#gallery">Галерея</a>
+            <a href="#gallery">Анализ</a>
             <a href="#contact">Контакты</a>
         </nav>
     </header>
 
     <main>
         <section id="about">
-            <h2>О нас</h2>
-            <p>Этот продукт помогает обнаруживать тексты, созданные искусственным интеллектом.</p>
-            <button id="helloBtn">Поздороваться</button>
+            <h2>О проекте</h2>
+            <p>Профессиональный анализ текстов на признаки искусственного интеллекта</p>
+            <button id="helloBtn">Тест-драйв</button>
         </section>
 
         <section id="gallery">
-            <h2>Галерея примеров</h2>
-            <div class="image-grid">
-                <div class="image-card">
-                    <img src="image1.png" alt="История ИИ" loading="lazy">
-                    <div class="image-caption">Эволюция искусственного интеллекта</div>
+            <h2>Как мы обнаруживаем ИИ</h2>
+            <div class="slider">
+                <div class="slider-caption">1. История развития ИИ</div>
+                
+                <div class="slider-container">
+                    <div class="slide">
+                        <img src="image1.png" alt="История ИИ" loading="lazy">
+                    </div>
+                    <div class="slide">
+                        <img src="image2.png" alt="Проблемы нейросетей" loading="lazy">
+                    </div>
+                    <div class="slide">
+                        <img src="imageopr.png" alt="Определение нейротекста" loading="lazy">
+                    </div>
+                    <div class="slide">
+                        <img src="imagef.png" alt="Функции нейросетей" loading="lazy">
+                    </div>
+                    <div class="slide">
+                        <img src="imageprim.png" alt="Примеры ошибок" loading="lazy">
+                    </div>
                 </div>
-                <div class="image-card">
-                    <img src="image2.png" alt="Обнаружение ИИ" loading="lazy">
-                    <div class="image-caption">Как отличить ИИ-текст от человеческого</div>
-                </div>
+
+                <div class="slider-indicators"></div>
+                
+                <button class="prev-btn" aria-label="Назад">❮</button>
+                <button class="next-btn" aria-label="Вперёд">❯</button>
             </div>
         </section>
 
@@ -45,7 +61,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Детектор ИИ-текстов. Все права защищены.</p>
+        <p>&copy; 2025 AI Text Detective | Все права защищены</p>
     </footer>
 
     <script src="script.js"></script>
