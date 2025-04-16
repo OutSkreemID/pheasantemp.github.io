@@ -1,10 +1,11 @@
 :root {
+    /* Фиолетовая цветовая палитра */
     --primary: #8A2BE2;
     --secondary: #9932CC;
     --dark-purple: #6A0DAD;
-    --text-white: #ffffff;
+    --text-white: #FFFFFF;
     --text-dark: #333333;
-    --bg-gray: #f5f5f5;
+    --bg-gray: #FAF9FB;
 }
 
 * {
@@ -70,12 +71,12 @@ h2 {
 /* Стили слайдера */
 .slider {
     position: relative;
-    border-radius: 15px;
+    max-width: 1200px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     margin: 2rem 0;
-    background: white;
-    background: linear-gradient(145deg, #8A2BE2, #6A0DAD);
+    background: linear-gradient(145deg, var(--primary), var(--secondary));
 
 }
 
@@ -92,6 +93,11 @@ h2 {
     display: flex;
     transition: transform 0.10s ease-out;
     height: 600px;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Соотношение 16:9 */
+    height: 0;
+    overflow: hidden;
 }
 
 .slide {
@@ -100,13 +106,22 @@ h2 {
     align-items: center;
     justify-content: center;
     padding: 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Теперь изображения заполняют весь слайд */
-    border-radius: 0; /* Убрали скругления */
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
     padding: 0; /* Убрали отступы */
     box-shadow: none;
 }
@@ -195,36 +210,30 @@ footer {
     margin-top: 3rem;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .slider-container {
-        height: 400px;
+/* Адаптивные настройки */
+@media (max-width: 992px) {
+    .slider {
+        max-width: 95%;
     }
-    
-    .prev-btn, .next-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-    }
-    
-    nav a {
-        display: inline-block;
-        margin: 0.5rem;
-        font-size: 1rem;
-    }
-    
-    section {
-        padding: 1.5rem;
+    .slide img {
+        max-width: 95%;
+        max-height: 95%;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .slider-container {
-        height: 280px;
+        padding-bottom: 75%; /* Соотношение 4:3 для мобильных */
     }
-    
-    .slider-caption {
-        font-size: 1rem;
-        padding: 0.8rem;
+}
+
+@media (max-width: 576px) {
+    .slider-container {
+        padding-bottom: 100%; /* Квадратное соотношение */
+    }
+    .slide img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0;
     }
 }
