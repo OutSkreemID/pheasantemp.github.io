@@ -1,81 +1,53 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Элементы слайдера
-    const slider = document.querySelector('.slider-container');
-    const slides = document.querySelectorAll('.slide');
-    const caption = document.querySelector('.slider-caption');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    const indicatorsContainer = document.querySelector('.slider-indicators');
+    // Мобильное меню
+    const burger = document.querySelector('.burger');
+    const nav = document.querySelector('.nav');
     
-    // Подписи для слайдов
-    const captions = [
-        "1. История развития ИИ (1906-2022)",
-        "2. Основные проблемы нейросетей",
-        "3. Как определить нейротекст",
-        "4. Функции современных нейросетей",
-        "5. Примеры ИИ-текстов с ошибками"
-    ];
+    burger.addEventListener('click', function() {
+        this.classList.toggle('active');
+        nav.classList.toggle('active');
+    });
+    
+    // Слайдер
+    const slider = document.querySelector('.slider__container');
+    const slides = document.querySelectorAll('.slide');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
+    const dotsContainer = document.querySelector('.slider__dots');
     
     let currentIndex = 0;
-    let isAnimating = false;
-    let autoSlideInterval;
+    const slideCount = slides.length;
     
-    // Создаем индикаторы
-    function createIndicators() {
+    // Создаем точки-индикаторы
+    function createDots() {
         slides.forEach((_, index) => {
-            const indicator = document.createElement('div');
-            indicator.classList.add('indicator');
-            if (index === 0) indicator.classList.add('active');
-            indicator.addEventListener('click', () => goToSlide(index));
-            indicatorsContainer.appendChild(indicator);
+            const dot = document.createElement('span');
+            dot.classList.add('dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
         });
     }
     
     // Обновление слайдера
     function updateSlider() {
-        if (isAnimating) return;
-        
-        isAnimating = true;
-        slider.style.transition = 'transform 0.5s ease-out';
         slider.style.transform = `translateX(-${currentIndex * 100}%)`;
         
-        // Обновляем подпись
-        caption.textContent = captions[currentIndex];
-        
-        // Обновляем индикаторы
-        document.querySelectorAll('.indicator').forEach((ind, idx) => {
-            ind.classList.toggle('active', idx === currentIndex);
+        // Обновляем точки
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
         });
-        
-        // Сбрасываем анимацию
-        setTimeout(() => {
-            isAnimating = false;
-        }, 500);
     }
     
     // Переход к слайду
     function goToSlide(index) {
-        currentIndex = (index + slides.length) % slides.length;
+        currentIndex = (index + slideCount) % slideCount;
         updateSlider();
-        resetAutoSlide();
-    }
-    
-    // Автопрокрутка
-    function startAutoSlide() {
-        autoSlideInterval = setInterval(() => {
-            goToSlide(currentIndex + 1);
-        }, 5000);
-    }
-    
-    function resetAutoSlide() {
-        clearInterval(autoSlideInterval);
-        startAutoSlide();
     }
     
     // Инициализация
     function initSlider() {
-        createIndicators();
-        startAutoSlide();
+        createDots();
         
         // Навигация
         nextBtn.addEventListener('click', () => {
@@ -86,32 +58,36 @@ document.addEventListener('DOMContentLoaded', function() {
             goToSlide(currentIndex - 1);
         });
         
+        // Автопрокрутка
+        let autoSlide = setInterval(() => {
+            goToSlide(currentIndex + 1);
+        }, 5000);
+        
         // Пауза при наведении
-        slider.parentElement.addEventListener('mouseenter', () => {
-            clearInterval(autoSlideInterval);
+        slider.addEventListener('mouseenter', () => {
+            clearInterval(autoSlide);
         });
         
-        slider.parentElement.addEventListener('mouseleave', () => {
-            startAutoSlide();
+        slider.addEventListener('mouseleave', () => {
+            autoSlide = setInterval(() => {
+                goToSlide(currentIndex + 1);
+            }, 5000);
         });
     }
     
-    // Приветственное сообщение
-    document.getElementById('helloBtn').addEventListener('click', function() {
-        alert('Добро пожаловать! Отправьте нам текст для анализа.');
-    });
+    initSlider();
     
     // Плавный скролл
-    document.querySelectorAll('nav a').forEach(anchor => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            target.scrollIntoView({
-                behavior: 'smooth'
-            });
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
-    
-    // Запуск слайдера
-    initSlider();
 });
