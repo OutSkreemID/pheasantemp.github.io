@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             function updateSlider() {
                 requestAnimationFrame(() => {
-                    slider.style.transform = 'translateX(-${currentIndex * 100}%)';
+                    slider.style.transform = `translateX(-${currentIndex * 100}%)`;
                     
                     if (dotsContainer) {
                         document.querySelectorAll('.dot').forEach((dot, index) => {
@@ -50,12 +50,18 @@ document.addEventListener('DOMContentLoaded', function() {
             function goToSlide(index) {
                 currentIndex = (index + slideCount) % slideCount;
                 updateSlider();
+                resetAutoSlide();
             }
 
             function startAutoSlide() {
+                clearInterval(autoSlide);
                 autoSlide = setInterval(() => {
                     goToSlide(currentIndex + 1);
                 }, 5000);
+            }
+
+            function resetAutoSlide() {
+                startAutoSlide();
             }
 
             function initSlider() {
@@ -72,6 +78,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         goToSlide(currentIndex - 1);
                     });
                 }
+                
+                // Клик по изображениям для открытия в полном размере
+                document.querySelectorAll('.slide__content img').forEach(img => {
+                    img.addEventListener('click', function() {
+                        window.open(this.src, '_blank');
+                    });
+                });
                 
                 startAutoSlide();
                 

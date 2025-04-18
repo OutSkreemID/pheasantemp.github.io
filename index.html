@@ -11,6 +11,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .slide__content {
+            cursor: pointer;
+            text-align: center;
+        }
+        .slide__content img {
+            max-width: 100%;
+            height: auto;
+            max-height: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+        .slide__content img:hover {
+            transform: scale(1.02);
+        }
+        .slide-caption {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -69,23 +91,28 @@
                     <div class="slider__container">
                         <div class="slide active">
                             <div class="slide__content">
-                                <img src="shablonj.png" alt="Шаблонные фразы" loading="lazy">
+                                <img src="shablon.png" alt="Шаблонные фразы" loading="lazy">
+                                <div class="slide-caption">Шаблонные фразы и клише</div>
                             </div>
                         </div>
                         <div class="slide">
                             <div class="slide__content">
                                 <img src="povt.png" alt="Повторение слов" loading="lazy">
+                                <div class="slide-caption">Частое повторение одних слов</div>
                             </div>
                         </div>
                         <div class="slide">
                             <div class="slide__content">
                                 <img src="nesoot.png" alt="Несоответствие темы" loading="lazy">
+                                <div class="slide-caption">Нелогичные переходы между темами</div>
                             </div>
                         </div>
                         <div class="slide">
                             <div class="slide__content">
                                 <img src="predsk.png" alt="Предсказуемость" loading="lazy">
+                                <div class="slide-caption">Предсказуемая структура текста</div>
                             </div>
+                        </div>
                     </div>
                     <div class="slider__controls">
                         <button class="slider__btn prev"><i class="fas fa-chevron-left"></i></button>
